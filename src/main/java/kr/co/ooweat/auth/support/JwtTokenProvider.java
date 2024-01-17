@@ -38,7 +38,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    //토큰이 유효한가?
+    //토큰 유효성 검사
     public void validateToken(final String token) {
         try {
             parseClaims(token);

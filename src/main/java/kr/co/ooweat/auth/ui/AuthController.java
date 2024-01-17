@@ -5,6 +5,8 @@ import kr.co.ooweat.auth.application.AuthService;
 import kr.co.ooweat.auth.support.AuthorizationExtractor;
 import kr.co.ooweat.auth.ui.dto.LoginResponse;
 import javax.validation.constraints.NotEmpty;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,9 +29,9 @@ public class AuthController {
         authService.verifyToken(token);
     }
     
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public LoginResponse login(@RequestParam @NotEmpty final String code) {
         return authService.login(code);
-    }
+    }*/
     
 }
