@@ -26,9 +26,9 @@ public class DBConfig {
 
     @Primary
     @Bean(name = "couponSqlSessionFactory")
-    public SqlSessionFactory couponSqlSessionFactory(@Qualifier("coupon") DataSource membershipDataSource, ApplicationContext applicationContext) throws Exception {
+    public SqlSessionFactory couponSqlSessionFactory(@Qualifier("coupon") DataSource couponDataSource, ApplicationContext applicationContext) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(membershipDataSource);
+        sqlSessionFactoryBean.setDataSource(couponDataSource);
         sqlSessionFactoryBean.setTypeAliasesPackage("kr.co.ooweat.model");
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mappers/*.xml"));
         return sqlSessionFactoryBean.getObject();
