@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import kr.co.ooweat.common.Util;
+import kr.co.ooweat.utils.StringUtils;
 import kr.co.ooweat.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,7 +23,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         if(request.getRequestURL().toString().contains("login")){
             return true;
         }
-        if (Util.notEmpty(user)) {
+        if (StringUtils.notEmpty(user)) {
             if(user.getAuthSeq() == 0){
                 session.setMaxInactiveInterval(-1);
             } else {
