@@ -1,5 +1,8 @@
 package kr.co.ooweat.auth.application;
 
+import io.jsonwebtoken.security.Keys;
+import java.util.Base64;
+import javax.crypto.SecretKey;
 import kr.co.ooweat.auth.support.JwtTokenProvider;
 import kr.co.ooweat.auth.ui.dto.LoginResponse;
 import kr.co.ooweat.exception.auth.ExpiredTokenException;
@@ -101,5 +104,14 @@ class AuthServiceTest {
         // when & then
         assertThatThrownBy(() -> authService.verifyToken(token))
                 .isInstanceOf(InvalidTokenException.class);
+    }
+    
+    //https://auth0.com/blog/brute-forcing-hs256-is-possible-the-importance-of-using-strong-keys-to-sign-jwts/
+    @DisplayName("hmac 암호화 알고리즘에 맞게 SecretKey 객체")
+    @Test
+    void t(){
+        String based64Encoded = Base64.getEncoder().encodeToString(secretKey.getBytes());
+        SecretKey seckey = Keys.hmacShaKeyFor(based64Encoded.getBytes());
+        assertThat(seckey).isNotNull();
     }
 }
