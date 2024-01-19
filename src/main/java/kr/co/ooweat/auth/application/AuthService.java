@@ -24,9 +24,9 @@ public class AuthService {
         jwtTokenProvider.validateToken(token);
     }
 
-    LoginResponse login(final String userId, final String token) {
-        Member member = members.getByUserId(userId);
-        
+    public LoginResponse login(final String userId, final String userPass) {
+        Member member = members.getByUserId(userId, userPass);
+        String token = "";
         boolean isFirstLogin = member.isFirstLogin();
         member.firstLogin(token);
         

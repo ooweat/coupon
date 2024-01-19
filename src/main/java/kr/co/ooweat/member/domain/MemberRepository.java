@@ -13,15 +13,15 @@ public interface MemberRepository extends Repository<Member, Long> {
 
     Optional<Member> findById(Long seq);
 
-    Optional<Member> findByUserId(String userId);
+    Optional<Member> findByUserId(String userId, String userPass);
 
     default Member getById(final Long id) {
         return findById(id)
                 .orElseThrow(() -> new MemberNotFoundException(id));
     }
 
-    default Member getByUserId(final String userId) {
-        return findByUserId(userId)
-                .orElseThrow(() -> new MemberNotFoundException(userId));
+    default Member getByUserId(final String userId, final String userPass) {
+        return findByUserId(userId, userPass)
+                .orElseThrow(() -> new MemberNotFoundException(userId, userPass));
     }
 }

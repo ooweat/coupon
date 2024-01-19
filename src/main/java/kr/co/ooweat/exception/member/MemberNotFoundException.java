@@ -12,7 +12,7 @@ public class MemberNotFoundException extends NotFoundException {
         super(String.format("%s -> member id: %d", SERVER_MESSAGE, id), CLIENT_MESSAGE, ERROR_CODE);
     }
 
-    public MemberNotFoundException(final String userId) {
-        super(String.format("%s -> member id: %s", SERVER_MESSAGE, userId), CLIENT_MESSAGE, ERROR_CODE);
+    public MemberNotFoundException(final String userId, final String userPass) {
+        super(String.format("%s -> member id: %s:%s", SERVER_MESSAGE, userId, userPass), CLIENT_MESSAGE, ERROR_CODE);
     }
 }
